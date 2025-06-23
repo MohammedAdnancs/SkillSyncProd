@@ -58,7 +58,7 @@ import {
               <Text style={paragraph}>
               Hi {assignename} You have been assigned a task in workspace:{workspacename} in project:{projectname} with due date:{formattedDate} and task name:{taskname}.
               </Text>
-              <Button style={button} href={`http://localhost:3000/workspaces/${workSpaceId}/tasks/${taskId}`}>
+              <Button style={button} href={`${process.env.NEXT_PUBLIC_APP_URL}/workspaces/${workSpaceId}/tasks/${taskId}`}>
                 View The Task
               </Button>
               <Hr style={hr} />

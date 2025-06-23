@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 const workspaceCreatePage =  async () => {
 
     const user = await getCurrent();
-    if (!user) redirect("http://localhost:3000/landingpage")
+    if (!user) redirect(`${process.env.NEXT_PUBLIC_APP_URL}/landingpage`)
         
     return (
         <div className="w-full lg:max-w-xl">

@@ -6,13 +6,13 @@ import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await getCurrent();
-  if (!user) redirect("http://localhost:3000/landingpage")
+  if (!user) redirect(`${process.env.NEXT_PUBLIC_APP_URL}/landingpage`)
 
   const workspaces = await getWorkspaces();
 
   if (workspaces.total === 0) {
     //redirect("/workspaces/create");
-    redirect("http://localhost:3000/landingpage");
+    redirect(`${process.env.NEXT_PUBLIC_APP_URL}/landingpage`)
   }else{
     redirect(`/workspaces/${workspaces.documents[0].$id}`);
   }

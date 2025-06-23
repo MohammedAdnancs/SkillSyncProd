@@ -49,7 +49,7 @@ import {
               <Text style={paragraph}>
               Hi {invitedUserName} You have been invited to the workspace:{workspacename}.
               </Text>
-              <Button style={button} href={`http://localhost:3000/workspaces/${workSpaceId}/join/${inviteLink}`}>
+              <Button style={button} href={`${process.env.NEXT_PUBLIC_APP_URL}/workspaces/${workSpaceId}/join/${inviteLink}`}>
                 View The Workspace invite
               </Button>
               <Hr style={hr} />

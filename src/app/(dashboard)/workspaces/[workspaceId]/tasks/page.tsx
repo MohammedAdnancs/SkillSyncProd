@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 const TasksPage = async () => {
   const user = await getCurrent();
-  if(!user) redirect("http://localhost:3000/landingpage");
+ if (!user) redirect(`${process.env.NEXT_PUBLIC_APP_URL}/landingpage`)
   return(
     <div className="h-full flex flex-col">
       <TaskViewSwitcher />
