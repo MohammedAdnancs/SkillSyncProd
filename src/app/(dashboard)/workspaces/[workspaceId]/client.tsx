@@ -189,8 +189,8 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
     const { open: createProject } = useCreateProjectModal();
     const { data: user } = useCurrent();
     const { data: members, isLoading: isLoadingMembers } = useGetMembers({ workspaceId });
+    const [canManageProjects, setcanManageProjects] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-
     // Check if the current user is an admin
     useEffect(() => {
         const checkAdminStatus = () => {
@@ -202,6 +202,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                 
                 if (currentUserMember) {
                     setIsAdmin(currentUserMember.role === MemberRole.ADMIN);
+                    setcanManageProjects(currentUserMember.specialRole?.documents?.[0]?.manageProjects === true);
                 } else {
                     setIsAdmin(false);
                 }
@@ -212,6 +213,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
         
         checkAdminStatus();
     }, [members, user]);    // Make sure the UI reflects access control status
+    
     const canCreateProjects = isAdmin === true;
 
     return (
@@ -223,7 +225,7 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
                         Projects ({total})
                     </p>
                 </div>
-                {canCreateProjects && (
+                {canCreateProjects || canManageProjects &&  (
                     <Button variant="outline" size="icon" onClick={createProject} className="workspace-button-outline rounded-full">
                         <PlusIcon className="size-4" />
                     </Button>

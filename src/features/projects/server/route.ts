@@ -36,10 +36,6 @@ const app = new Hono()
                 return c.json({error: "Unauthorized"}, 401)
             }
             
-            // Check if user has ADMIN role
-            if(member.role !== MemberRole.ADMIN){
-                return c.json({error: "Only admins can create projects"}, 403)
-            }
 
             let uploadedImageUrl: string | undefined;
 
