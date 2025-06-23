@@ -39,7 +39,8 @@ const app = new Hono()
         estimatedHours,
         description,
         expertiseLevel
-      } = c.req.valid("json");      const member = await getMember({
+      } = c.req.valid("json");      
+      const member = await getMember({
         databases,
         workspaceId,
         userId: user.$id,
@@ -47,11 +48,6 @@ const app = new Hono()
       
       if(!member){
         return c.json({error: "Unauthorized"}, 401);
-      }
-      
-      // Only ADMIN users can create tasks
-      if(member.role !== MemberRole.ADMIN){
-        return c.json({error: "Only admins can create tasks"}, 403);
       }
 
       const highestPositionTask = await databases.listDocuments(

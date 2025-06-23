@@ -7,6 +7,7 @@ import { use } from "react";
 import { EditTaskForm } from "./edit-task-form";
 import { useGetTask } from "../api/use-get-task";
 import { useGetAllTaskDependencies } from "@/features/TasksDependencies/api/use-get-tasks-dependencies";
+import { MemberRole } from "@/features/members/types";
 
 interface EditTaskFormWrapperProps {
     onCancel: () => void;
@@ -25,7 +26,7 @@ export const EditTaskFormWrapper = ({onCancel, id}: EditTaskFormWrapperProps) =>
     const {data:members , isLoading:isLoadingMembers} = useGetMembers({workspaceId});
 
     const projectOptions = projects?.documents.map(project => ({ id: project.$id , name: project.name, imageUrl: project.imageUrl}));
-    const memberOptions = members?.documents.map(member => ({ id: member.$id , name: member.name}));
+    const memberOptions = members?.documents.map(member => ({ id: member.$id , name: member.name , isAdmin: member.role === MemberRole.ADMIN? true : false}));
     const isLoading = isLoadingProjects || isLoadingMembers || isLoadingTask;      
     const {data: taskDependenciesData, isLoading: isLoadingDependencies} = useGetAllTaskDependencies({ taskId: id ,workspaceId: workspaceId, projectId: initialValues?.projectId });
       // Use the whole dependency objects

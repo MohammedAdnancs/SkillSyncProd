@@ -137,7 +137,7 @@ export const CreateTaskForm = ({ onCancel, projectOptions }: CreateTaskFormProps
       }
     });
   };
-
+  
   return (
     <Card className="w-full h-full border-none shadow-none max-w-5xl mx-auto">
       <CardHeader className="flex p-7">

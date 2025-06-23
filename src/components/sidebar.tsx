@@ -20,15 +20,15 @@ export const Sidebar = () => {
 
     // Get the appropriate logo based on the current theme
     const getLogo = () => {
-        if (!mounted) return "/logo.svg"; // Default logo during SSR
+        if (!mounted) return "https://res.cloudinary.com/dixm4mirt/image/upload/v1750694924/logo_yqv0xk.svg"; // Default logo during SSR
 
         switch (theme) {
             case "dracula":
-                return "/logo-dracula.svg";
+                return "https://res.cloudinary.com/dixm4mirt/image/upload/v1750694924/logo-dracula_clga8t.svg";
             case "nord":
-                return "/logo-nord.svg";
+                return "https://res.cloudinary.com/dixm4mirt/image/upload/v1750694924/logo-nord_sjet7p.svg";
             default:
-                return "/logo.svg";
+                return "https://res.cloudinary.com/dixm4mirt/image/upload/v1750694924/logo_yqv0xk.svg";
         }
     };
 

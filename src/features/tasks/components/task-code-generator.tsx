@@ -45,9 +45,8 @@ export const TaskCodeGenerator = ({ taskName, taskDescription, projectId, techSt
       toast.error("Task name and description are required for code generation.");
       return;
     }    
-    
-    // Use project details if available to enhance the prompt
-    const projectTechStack = projectDetails?.techStack || techStack || "Not specified";
+
+    const projectTechStack = projectDetails?.ProjectTechStack || techStack || "Not specified";
     const projectName = projectDetails?.name || "Current project";
     const projectDescription = projectDetails?.description || "";
       const userInput = `

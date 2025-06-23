@@ -25,7 +25,7 @@ import { useGetAllTaskDependencies } from "@/features/TasksDependencies/api/use-
 interface EditTaskFormProps {
   onCancel?: () => void;
   projectOptions: {id: string, name: string , imageUrl:string}[];
-  memberOptions: {id: string, name: string }[];
+  memberOptions: {id: string, name: string ,isAdmin:boolean }[];
   initialValues: Task;
   taskDependencies?: Array<{
     $id: string;
@@ -69,11 +69,9 @@ export const EditTaskForm = ({ onCancel , projectOptions , memberOptions,taskDep
     console.log("assigneeId fffffffffffffffffffff:", values.assigneeId);
     console.log("Selected Assignee ffffffffffffffff:", selectedAssignee);
 
-
     const preferredRole = values.preferredRole ? undefined : values.preferredRole;
     const expertiseLevel = values.expertiseLevel ? undefined : values.expertiseLevel;
       
-    
     const submissionData = {
       ...values,
       assigneeId: assigneeId || '',
@@ -252,13 +250,15 @@ export const EditTaskForm = ({ onCancel , projectOptions , memberOptions,taskDep
                                 None (Unassigned)
                               </div>
                             </SelectItem>
-                            {memberOptions.map((member) => (
-                              <SelectItem key={member.id} value={member.id}>
-                                <div className="flex items-center gap-x-2">
-                                  <MembersAvatar className="size-6" name={member.name}/>
-                                  {member.name}
-                                </div>
-                              </SelectItem>
+                            {memberOptions
+                              .filter(member => !member.isAdmin) // Filter out admin members
+                              .map((member) => (
+                                <SelectItem key={member.id} value={member.id}>
+                                  <div className="flex items-center gap-x-2">
+                                    <MembersAvatar className="size-6" name={member.name}/>
+                                    {member.name}
+                                  </div>
+                                </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
