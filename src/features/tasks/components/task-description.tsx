@@ -8,9 +8,10 @@ import { Textarea } from "@/components/ui/textarea";
 
 interface TaskDescriptionProps {
     task: Task;
+    membercanedit?: boolean;
 };
 
-export const TaskDescription = ({ task }: TaskDescriptionProps) => {
+export const TaskDescription = ({ task , membercanedit}: TaskDescriptionProps) => {
 
     const [isEditing, setIsEditing] = useState(false);
     const [value , setValue] = useState(task.description);
@@ -31,7 +32,8 @@ export const TaskDescription = ({ task }: TaskDescriptionProps) => {
         <div className="p-4 border rounded-lg">
             <div className="flex justify-between items-center">
                 <p className="text-lg font-semibold">Task Description</p>
-                <Button onClick={() => setIsEditing((prev)=>!prev)} size="sm" variant="secondary">
+                {membercanedit? (
+                     <Button onClick={() => setIsEditing((prev)=>!prev)} size="sm" variant="secondary">
                     {isEditing? (
                         <XIcon className="size-4 mr-2" />
                     ):(
@@ -39,6 +41,8 @@ export const TaskDescription = ({ task }: TaskDescriptionProps) => {
                     )}
                     {isEditing? "Cancel": "Edit"}
                 </Button>
+                ):null}
+            
             </div>
             <DottedSeparator className="my-4" />
             {isEditing? (

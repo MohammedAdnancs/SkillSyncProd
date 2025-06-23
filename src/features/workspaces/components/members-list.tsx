@@ -81,12 +81,16 @@ export const MembersList = () => {
             );
             
             if (currentUserMember) {
-                setIsCurrentUserAdmin(currentUserMember.role === MemberRole.ADMIN);
-                // Check if user has manageMembers permission
-                setCanManageMembers(
+                setIsCurrentUserAdmin(currentUserMember.role === MemberRole.ADMIN);                
+                if (currentUserMember.specialRole != null && 
+                    Array.isArray(currentUserMember.specialRole.documents) && 
+                    currentUserMember.specialRole.documents.length > 0) {
+                    setCanManageMembers(
                     currentUserMember.role === MemberRole.ADMIN || 
-                    currentUserMember.specialRole.documents[0].manageMembers === true
-                );
+                    (currentUserMember.specialRole.documents[0]?.manageMembers === true));
+                } else {
+                    setCanManageMembers(currentUserMember.role === MemberRole.ADMIN);
+                }
             } else {
                 setIsCurrentUserAdmin(false);
                 setCanManageMembers(false);

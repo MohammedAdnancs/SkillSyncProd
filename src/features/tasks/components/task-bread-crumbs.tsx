@@ -13,9 +13,10 @@ import { is } from "date-fns/locale";
 interface TaskBreadCrumbsProps {
     project:Project;
     task:Task;
+    membercanedit?: boolean;
 };
 
-export const TaskBreadCrumbs = ({project, task}:TaskBreadCrumbsProps) => {
+export const TaskBreadCrumbs = ({project, task ,membercanedit}:TaskBreadCrumbsProps) => {
     
     const workspaceId = useWorkspaceId();
     const router = useRouter();
@@ -49,11 +50,13 @@ export const TaskBreadCrumbs = ({project, task}:TaskBreadCrumbsProps) => {
             <p className="text-sm lg:text-lg font-semibold">
                 {task.name}
             </p>
-            <Button onClick={handleDelete} disabled={isPending} className="ml-auto" variant="destructive" size="sm">
+            {membercanedit ?(
+                <Button onClick={handleDelete} disabled={isPending} className="ml-auto" variant="destructive" size="sm">
                 
-                <TrashIcon className="size-4 lg:mr-2"/>
-                <span className="hidden lg:block">Delete Task</span>
-            </Button>
+                    <TrashIcon className="size-4 lg:mr-2"/>
+                    <span className="hidden lg:block">Delete Task</span>
+                </Button>
+            ):null}
         </div>
     );
 };

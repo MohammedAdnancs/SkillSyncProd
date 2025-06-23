@@ -16,9 +16,10 @@ import { SmartTaskAllocation } from "./smart-task-allocation";
 
 interface TaskOverviewProps {
     task: Task;
+    membercanedit?: boolean;
 };
 
-export const TaskOverview = ({ task }: TaskOverviewProps) => {
+export const TaskOverview = ({ task , membercanedit}: TaskOverviewProps) => {
     const { open } = useEditTaskModal();
 
     // Define animation variants for smooth transitions
@@ -65,7 +66,8 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
                     <TooltipProvider>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <Button 
+                                {membercanedit ? (
+                                     <Button 
                                     onClick={() => open(task.$id)} 
                                     size="sm" 
                                     variant="outline"
@@ -74,6 +76,7 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
                                     <PencilIcon className="size-3.5 mr-1" />
                                     Edit
                                 </Button>
+                                ): null}
                             </TooltipTrigger>
                             <TooltipContent>
                                 <p className="text-xs">Edit task details</p>
@@ -84,7 +87,8 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
 
                 <DottedSeparator className="my-3" />
 
-                <div className="flex flex-col gap-y-5">                    <motion.div variants={itemVariants}>
+                <div className="flex flex-col gap-y-5">                    
+                    <motion.div variants={itemVariants}>
                         <OverviewProperty 
                             label="Assignee" 
                             icon={<User className="size-4 text-muted-foreground" />}

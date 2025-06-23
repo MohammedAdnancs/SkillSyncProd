@@ -15,6 +15,7 @@ import { useGetAllTaskDependencies } from "@/features/TasksDependencies/api/use-
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useEffect, useState } from "react";
 import { Link as LinkIcon } from "lucide-react";
+import { MemberRole } from "@/features/members/types";
 
 export const TaskIdClient = () => {
     const taskId = useTaskId();
@@ -23,7 +24,9 @@ export const TaskIdClient = () => {
     const { data: currentUser } = useCurrent();
     const { data: members } = useGetMembers({ workspaceId });
     const [isAssignedToCurrentUser, setIsAssignedToCurrentUser] = useState(false);
-    
+
+    const [canedit, setcanedit] = useState(false);
+
     const {data: tasksDependencies, isLoading: isLoadingDependencies} = useGetAllTaskDependencies({taskId: taskId,workspaceId: workspaceId, projectId: data?.projectId});
     
     console.log("Task Dependencies:", tasksDependencies);
@@ -35,7 +38,14 @@ export const TaskIdClient = () => {
             const currentUserMember = members.documents.find(member => 
                 member.userId === currentUser.$id
             );
-            
+              if(currentUserMember?.specialRole && currentUserMember.specialRole.documents?.length > 0){
+                if(currentUserMember.specialRole.documents[0].manageTasks) {
+                    setcanedit(true);
+                }
+            }else if (currentUserMember?.role === MemberRole.ADMIN){
+                setcanedit(true);
+            }
+
             // Check if the current member's ID matches the task's assigneeId
             if (currentUserMember) {
                 setIsAssignedToCurrentUser(data.assigneeId === currentUserMember.$id);
@@ -47,16 +57,17 @@ export const TaskIdClient = () => {
 
     if (isLoading) return <PageLoader />;
 
-    if(!data) return <PageError message = "Task Not Found"/>;    return (
+    if(!data) return <PageError message = "Task Not Found"/>;    
+    return (
         <div className="flex flex-col">
-            {data.project && <TaskBreadCrumbs project={data.project} task={data} />}
+            {data.project && <TaskBreadCrumbs project={data.project} task={data} membercanedit={canedit}/>}
             <DottedSeparator className="my-6" />
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                <TaskOverview task={data} />
-                <TaskDescription task={data} />
-            </div>            <DottedSeparator className="my-6" />
+                <TaskOverview task={data} membercanedit={canedit} />
+                <TaskDescription task={data} membercanedit={canedit}/>
+            </div>            
+            <DottedSeparator className="my-6" />
             
-            {/* Task Dependencies Section */}
             {tasksDependencies && tasksDependencies.length > 0 && (
               <>
                 <div className="mb-6">
@@ -66,7 +77,8 @@ export const TaskIdClient = () => {
                       <div 
                         key={dependency.$id} 
                         className="border rounded-lg p-4 bg-muted/30 hover:bg-muted/50 transition-colors"
-                      >                        <div className="flex items-start gap-3">
+                      >                        
+                      <div className="flex items-start gap-3">
                           <div className="bg-primary/10 rounded-full p-2">
                             <LinkIcon className="h-4 w-4 text-primary" />
                           </div>
