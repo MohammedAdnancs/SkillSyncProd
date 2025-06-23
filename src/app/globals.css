@@ -1,0 +1,1092 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "react-day-picker/dist/style.css";
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 94%; /* Darker than 98% */
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Members list background - light theme */
+    --members-list-bg: 0 0% 94%;
+    /* Table background - light theme */
+    --table-background: 210 50% 96%;
+    
+    /* Landing page specific colors - light theme */
+    --landing-background: 0 0% 100%;
+    --landing-foreground: 0 0% 3.9%;
+    --landing-primary: 210 100% 50%;
+    --landing-primary-foreground: 0 0% 100%;
+    --landing-secondary: 210 50% 95%;
+    --landing-secondary-foreground: 0 0% 9%;
+    --landing-accent: 210 100% 50%;
+    --landing-accent-foreground: 0 0% 100%;
+    --landing-muted: 0 0% 96.1%;
+    --landing-muted-foreground: 0 0% 45.1%;
+    --landing-icon-color: 210 100% 50%;
+    --landing-card-bg: 0 0% 100%;
+    --landing-card-border: 210 20% 93%;
+    --landing-button-bg: 0 0% 9%;
+    --landing-button-text: 0 0% 100%;
+    --landing-button-hover: 210 100% 50%;
+    --landing-button-hover-text: 0 0% 100%;
+    
+    /* Auth page specific colors - light theme */
+    --auth-card-bg: 210 40% 98%;
+    --auth-card-border: 210 20% 93%;
+    --auth-input-bg: 0 0% 100%;
+    --auth-input-border: 0 0% 89.8%;
+    --auth-oauth-bg: 0 0% 96.1%;
+    --auth-oauth-border: 0 0% 89.8%;
+    --auth-oauth-bg-hover: 0 0% 94%;
+    --auth-oauth-border-hover: 0 0% 89%;
+    
+    /* Workspace specific colors - light theme */
+    --workspace-bg: 0 0% 100%;
+    --workspace-section-bg: 0 0% 96.1%;
+    --workspace-card-bg: 0 0% 100%;
+    --workspace-card-border: 210 20% 93%;
+    --workspace-card-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    --workspace-header-color: 0 0% 15%;
+    --workspace-title-color: 0 0% 25%;
+    --workspace-text-color: 0 0% 45%;
+    --workspace-task-hover: 210 100% 97%;
+    --workspace-task-hover-border: 210 100% 75%;
+    --workspace-project-hover: 270 100% 97%;
+    --workspace-project-hover-border: 270 100% 75%;
+    --workspace-member-hover: 140 100% 97%;
+    --workspace-member-hover-border: 140 100% 75%;
+  }
+  
+  /* GitHub theme - improved dark theme based on GitHub's dark mode */
+  .dark {
+    --background: 220 26% 14%;
+    --foreground: 210 40% 98%;
+    --card: 220 26% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 26% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 212 92% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 26% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 26% 18%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 220 26% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 26% 18%;
+    --input: 220 26% 18%;
+    --ring: 212 92% 45%;
+    --chart-1: 212 92% 45%;
+    --chart-2: 180 70% 45%;
+    --chart-3: 340 65% 60%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 130 55% 45%;
+    --sidebar-background: 220 26% 10%; /* Darker than 14% */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 212 92% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 26% 18%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 26% 18%;
+    --sidebar-ring: 212 92% 45%;
+    /* Members list background - dark theme */
+    --members-list-bg: 220 26% 20%;
+    /* Table background - dark theme */
+    --table-background: 220 26% 16%;
+    
+    /* Landing page specific colors - dark theme */
+    --landing-background: 220 26% 14%;
+    --landing-foreground: 210 40% 98%;
+    --landing-primary: 212 92% 45%;
+    --landing-primary-foreground: 0 0% 100%;
+    --landing-secondary: 220 26% 18%;
+    --landing-secondary-foreground: 210 40% 98%;
+    --landing-accent: 212 92% 45%;
+    --landing-accent-foreground: 0 0% 100%;
+    --landing-muted: 220 26% 18%;
+    --landing-muted-foreground: 215 20% 65%;
+    --landing-icon-color: 212 92% 45%;
+    --landing-card-bg: 220 26% 16%;
+    --landing-card-border: 220 26% 22%;
+    --landing-button-bg: 212 92% 45%;
+    --landing-button-text: 0 0% 100%;
+    --landing-button-hover: 212 92% 55%;
+    --landing-button-hover-text: 0 0% 100%;
+    
+    /* Auth page specific colors - dark theme */
+    --auth-card-bg: 220 26% 18%;
+    --auth-card-border: 220 26% 24%;
+    --auth-input-bg: 220 26% 20%;
+    --auth-input-border: 220 26% 18%;
+    --auth-oauth-bg: 220 26% 18%;
+    --auth-oauth-border: 220 26% 20%;
+    --auth-oauth-bg-hover: 220 26% 22%;
+    --auth-oauth-border-hover: 220 26% 24%;
+    
+    /* Workspace specific colors - dark theme */
+    --workspace-bg: 220 26% 14%;
+    --workspace-section-bg: 220 26% 18%;
+    --workspace-card-bg: 220 26% 20%;
+    --workspace-card-border: 220 26% 24%;
+    --workspace-card-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --workspace-header-color: 210 40% 90%;
+    --workspace-title-color: 210 40% 85%;
+    --workspace-text-color: 215 20% 65%;
+    --workspace-task-hover: 212 92% 20%;
+    --workspace-task-hover-border: 212 92% 45%;
+    --workspace-project-hover: 270 80% 20%;
+    --workspace-project-hover-border: 270 80% 45%;
+    --workspace-member-hover: 140 80% 20%;
+    --workspace-member-hover-border: 140 80% 45%;
+  }
+  
+  /* Dracula theme */
+  .dracula {
+    --background: 231 15% 18%;
+    --foreground: 60 30% 96%;
+    --card: 231 15% 18%;
+    --card-foreground: 60 30% 96%;
+    --popover: 231 15% 18%;
+    --popover-foreground: 60 30% 96%;
+    --primary: 326 100% 74%;
+    --primary-foreground: 231 15% 18%;
+    --secondary: 231 15% 25%;
+    --secondary-foreground: 60 30% 96%;
+    --muted: 231 15% 25%;
+    --muted-foreground: 225 27% 70%;
+    --accent: 231 15% 25%;
+    --accent-foreground: 60 30% 96%;
+    --destructive: 0 100% 67%;
+    --destructive-foreground: 60 30% 96%;
+    --border: 231 15% 25%;
+    --input: 231 15% 25%;
+    --ring: 326 100% 74%;
+    --chart-1: 326 100% 74%;
+    --chart-2: 265 89% 78%;
+    --chart-3: 135 94% 65%;
+    --chart-4: 191 97% 77%;
+    --chart-5: 31 100% 71%;
+    --sidebar-background: 231 15% 14%; /* Darker than 18% */
+    --sidebar-foreground: 60 30% 96%;
+    --sidebar-primary: 326 100% 74%;
+    --sidebar-primary-foreground: 231 15% 18%;
+    --sidebar-accent: 231 15% 25%;
+    --sidebar-accent-foreground: 60 30% 96%;
+    --sidebar-border: 231 15% 25%;
+    --sidebar-ring: 326 100% 74%;
+    /* Members list background - dracula theme */
+    --members-list-bg: 231 15% 22%;
+    /* Table background - dracula theme */
+    --table-background: 231 15% 21%;
+    
+    /* Landing page specific colors - dracula theme */
+    --landing-background: 231 15% 18%;
+    --landing-foreground: 60 30% 96%;
+    --landing-primary: 326 100% 74%;
+    --landing-primary-foreground: 231 15% 18%;
+    --landing-secondary: 231 15% 25%;
+    --landing-secondary-foreground: 60 30% 96%;
+    --landing-accent: 191 97% 77%;
+    --landing-accent-foreground: 231 15% 18%;
+    --landing-muted: 231 15% 25%;
+    --landing-muted-foreground: 225 27% 70%;
+    --landing-icon-color: 326 100% 74%;
+    --landing-card-bg: 231 15% 21%;
+    --landing-card-border: 231 15% 28%;
+    --landing-button-bg: 326 100% 74%;
+    --landing-button-text: 231 15% 18%;
+    --landing-button-hover: 326 100% 80%;
+    --landing-button-hover-text: 231 15% 18%;
+    
+    /* Auth page specific colors - dracula theme */
+    --auth-card-bg: 231 15% 22%;
+    --auth-card-border: 231 15% 30%;
+    --auth-input-bg: 231 15% 20%;
+    --auth-input-border: 231 15% 25%;
+    --auth-oauth-bg: 231 15% 25%;
+    --auth-oauth-border: 231 15% 28%;
+    --auth-oauth-bg-hover: 231 15% 28%;
+    --auth-oauth-border-hover: 231 15% 30%;
+    
+    /* Workspace specific colors - dracula theme */
+    --workspace-bg: 231 15% 18%;
+    --workspace-section-bg: 231 15% 22%;
+    --workspace-card-bg: 231 15% 24%;
+    --workspace-card-border: 231 15% 30%;
+    --workspace-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    --workspace-header-color: 60 30% 90%;
+    --workspace-title-color: 60 30% 85%;
+    --workspace-text-color: 225 27% 70%;
+    --workspace-task-hover: 326 100% 25%;
+    --workspace-task-hover-border: 326 100% 74%;
+    --workspace-project-hover: 265 89% 25%;
+    --workspace-project-hover-border: 265 89% 78%;
+    --workspace-member-hover: 135 94% 25%;
+    --workspace-member-hover-border: 135 94% 65%;
+  }
+  
+  /* Nord theme */
+  .nord {
+    --background: 220 28% 18%;
+    --foreground: 218 27% 92%;
+    --card: 220 28% 18%;
+    --card-foreground: 218 27% 92%;
+    --popover: 220 28% 18%;
+    --popover-foreground: 218 27% 92%;
+    --primary: 193 82% 49%;
+    --primary-foreground: 218 27% 92%;
+    --secondary: 220 26% 23%;
+    --secondary-foreground: 218 27% 92%;
+    --muted: 220 26% 23%;
+    --muted-foreground: 218 17% 65%;
+    --accent: 220 26% 23%;
+    --accent-foreground: 218 27% 92%;
+    --destructive: 354 65% 65%;
+    --destructive-foreground: 218 27% 92%;
+    --border: 220 26% 23%;
+    --input: 220 26% 23%;
+    --ring: 193 82% 49%;
+    --chart-1: 193 82% 49%;
+    --chart-2: 210 34% 63%;
+    --chart-3: 179 25% 65%;
+    --chart-4: 92 28% 65%;
+    --chart-5: 311 20% 63%;
+    --sidebar-background: 220 28% 14%; /* Darker than 18% */
+    --sidebar-foreground: 218 27% 92%;
+    --sidebar-primary: 193 82% 49%;
+    --sidebar-primary-foreground: 218 27% 92%;
+    --sidebar-accent: 220 26% 23%;
+    --sidebar-accent-foreground: 218 27% 92%;
+    --sidebar-border: 220 26% 23%;
+    --sidebar-ring: 193 82% 49%;
+    /* Members list background - nord theme */
+    --members-list-bg: 220 28% 22%;
+    /* Table background - nord theme */
+    --table-background: 220 28% 22%;
+    
+    /* Landing page specific colors - nord theme */
+    --landing-background: 220 28% 18%;
+    --landing-foreground: 218 27% 92%;
+    --landing-primary: 193 82% 49%;
+    --landing-primary-foreground: 218 27% 92%;
+    --landing-secondary: 220 26% 23%;
+    --landing-secondary-foreground: 218 27% 92%;
+    --landing-accent: 193 82% 49%;
+    --landing-accent-foreground: 218 27% 92%;
+    --landing-muted: 220 26% 23%;
+    --landing-muted-foreground: 218 17% 65%;
+    --landing-icon-color: 193 82% 49%;
+    --landing-card-bg: 220 28% 21%;
+    --landing-card-border: 220 26% 26%;
+    --landing-button-bg: 193 82% 49%;
+    --landing-button-text: 218 27% 92%;
+    --landing-button-hover: 193 82% 59%;
+    --landing-button-hover-text: 218 27% 92%;
+    
+    /* Auth page specific colors - nord theme */
+    --auth-card-bg: 220 26% 22%;
+    --auth-card-border: 220 26% 28%;
+    --auth-input-bg: 220 26% 20%;
+    --auth-input-border: 220 26% 23%;
+    --auth-oauth-bg: 220 26% 23%;
+    --auth-oauth-border: 220 26% 26%;
+    --auth-oauth-bg-hover: 220 26% 26%;
+    --auth-oauth-border-hover: 220 26% 28%;
+    
+    /* Workspace specific colors - nord theme */
+    --workspace-bg: 220 28% 18%;
+    --workspace-section-bg: 220 28% 22%;
+    --workspace-card-bg: 220 28% 24%;
+    --workspace-card-border: 220 26% 28%;
+    --workspace-card-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --workspace-header-color: 218 27% 88%;
+    --workspace-title-color: 218 27% 82%;
+    --workspace-text-color: 218 17% 65%;
+    --workspace-task-hover: 193 82% 20%;
+    --workspace-task-hover-border: 193 82% 49%;
+    --workspace-project-hover: 311 20% 20%;
+    --workspace-project-hover-border: 311 20% 63%;
+    --workspace-member-hover: 92 28% 20%;
+    --workspace-member-hover-border: 92 28% 65%;
+    --button-lists-dashboard:220 26% 23%;
+
+  }
+  
+  /* Monokai theme */
+  .monokai {
+    --background: 60 6% 14%;
+    --foreground: 60 11% 98%;
+    --card: 60 6% 14%;
+    --card-foreground: 60 11% 98%;
+    --popover: 60 6% 14%;
+    --popover-foreground: 60 11% 98%;
+    --primary: 75 65% 60%;
+    --primary-foreground: 60 6% 14%;
+    --secondary: 60 6% 20%;
+    --secondary-foreground: 60 11% 98%;
+    --muted: 60 6% 20%;
+    --muted-foreground: 60 5% 64%;
+    --accent: 60 6% 20%;
+    --accent-foreground: 60 11% 98%;
+    --destructive: 0 90% 65%;
+    --destructive-foreground: 60 11% 98%;
+    --border: 60 6% 20%;
+    --input: 60 6% 20%;
+    --ring: 75 65% 60%;
+    --chart-1: 75 65% 60%;
+    --chart-2: 338 95% 75%;
+    --chart-3: 22 90% 66%;
+    --chart-4: 210 90% 65%;
+    --chart-5: 267 85% 78%;
+    --sidebar-background: 60 6% 10%; /* Darker than 14% */
+    --sidebar-foreground: 60 11% 98%;
+    --sidebar-primary: 75 65% 60%;
+    --sidebar-primary-foreground: 60 6% 14%;
+    --sidebar-accent: 60 6% 20%;
+    --sidebar-accent-foreground: 60 11% 98%;
+    --sidebar-border: 60 6% 20%;
+    --sidebar-ring: 75 65% 60%;
+    /* Members list background - monokai theme */
+    --members-list-bg: 60 6% 19%;
+    /* Table background - monokai theme */
+    --table-background: 60 6% 18%;
+    
+    /* Landing page specific colors - monokai theme */
+    --landing-background: 60 6% 14%;
+    --landing-foreground: 60 11% 98%;
+    --landing-primary: 75 65% 60%;
+    --landing-primary-foreground: 60 6% 14%;
+    --landing-secondary: 60 6% 20%;
+    --landing-secondary-foreground: 60 11% 98%;
+    --landing-accent: 338 95% 75%;
+    --landing-accent-foreground: 60 6% 14%;
+    --landing-muted: 60 6% 20%;
+    --landing-muted-foreground: 60 5% 64%;
+    --landing-icon-color: 75 65% 60%;
+    --landing-card-bg: 60 6% 17%;
+    --landing-card-border: 60 6% 24%;
+    --landing-button-bg: 75 65% 60%;
+    --landing-button-text: 60 6% 14%;
+    --landing-button-hover: 75 65% 70%;
+    --landing-button-hover-text: 60 6% 14%;
+    
+    /* Auth page specific colors - monokai theme */
+    --auth-card-bg: 60 6% 18%;
+    --auth-card-border: 60 6% 24%;
+    --auth-input-bg: 60 6% 17%;
+    --auth-input-border: 60 6% 20%;
+    --auth-oauth-bg: 60 6% 20%;
+    --auth-oauth-border: 60 6% 24%;
+    --auth-oauth-bg-hover: 60 6% 24%;
+    --auth-oauth-border-hover: 60 6% 26%;
+    
+    /* Workspace specific colors - monokai theme */
+    --workspace-bg: 60 6% 14%;
+    --workspace-section-bg: 60 6% 18%;
+    --workspace-card-bg: 60 6% 20%;
+    --workspace-card-border: 60 6% 24%;
+    --workspace-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    --workspace-header-color: 60 11% 90%;
+    --workspace-title-color: 60 11% 85%;
+    --workspace-text-color: 60 5% 64%;
+    --workspace-task-hover: 75 65% 25%;
+    --workspace-task-hover-border: 75 65% 60%;
+    --workspace-project-hover: 338 95% 25%;
+    --workspace-project-hover-border: 338 95% 75%;
+    --workspace-member-hover: 22 90% 25%;
+    --workspace-member-hover-border: 22 90% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add the .bg-sidebar utility class to use the --sidebar-background variable */
+.bg-sidebar {
+  background-color: hsl(var(--sidebar-background));
+}
+
+.hide-scrollbar{
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::--webkit-scrollbar{
+  display: none;
+}
+
+/* Custom styles */
+.members-list-bg {
+  background-color: hsl(var(--members-list-bg));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Member card styling */
+.member-card {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Theme-specific member card border colors */
+.member-card[data-role="ADMIN"] {
+  border-left: 4px solid hsl(var(--chart-1));
+}
+
+.member-card[data-role="MEMBER"] {
+  border-left: 4px solid hsl(var(--chart-2));
+}
+
+/* Card footer with more visible border */
+.member-card .card-footer,
+.card .card-footer {
+  border-top: 2px solid hsl(var(--border));
+}
+
+/* Make card footer border more visible in dark themes */
+.dark .member-card .card-footer,
+.dark .card .card-footer {
+  border-top-color: hsl(var(--border) / 0.8);
+}
+
+.dracula .member-card .card-footer,
+.dracula .card .card-footer {
+  border-top-color: hsl(var(--border) / 0.8);
+}
+
+.nord .member-card .card-footer,
+.nord .card .card-footer {
+  border-top-color: hsl(var(--border) / 0.8);
+}
+
+.monokai .member-card .card-footer,
+.monokai .card .card-footer {
+  border-top-color: hsl(var(--border) / 0.8);
+}
+
+.dark .member-card {
+  background-color: hsl(220 26% 17%);
+}
+
+.dracula .member-card {
+  background-color: hsl(231 15% 22%);
+}
+
+.nord .member-card {
+  background-color: hsl(220 28% 22%);
+}
+
+.monokai .member-card {
+  background-color: hsl(60 6% 17%);
+}
+
+.member-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(107, 114, 128, 0.7);
+}
+
+/* Landing page theme styles */
+.landing-page {
+  background-color: hsl(var(--landing-background));
+  color: hsl(var(--landing-foreground));
+}
+
+.landing-page h1, 
+.landing-page h2, 
+.landing-page h3 {
+  color: hsl(var(--landing-foreground));
+}
+
+.landing-page p {
+  color: hsl(var(--landing-foreground));
+}
+
+.landing-page-card {
+  background-color: hsl(var(--landing-card-bg));
+  border: 1px solid hsl(var(--landing-card-border));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.landing-page-icon {
+  color: hsl(var(--landing-icon-color));
+}
+
+.landing-page-button {
+  background-color: hsl(var(--landing-button-bg));
+  color: hsl(var(--landing-button-text));
+  transition: background-color 0.3s ease;
+}
+
+.landing-page-button:hover {
+  background-color: hsl(var(--landing-button-hover));
+  color: hsl(var(--landing-button-hover-text));
+}
+
+.landing-page-text-primary {
+  color: hsl(var(--landing-primary));
+}
+
+.landing-page-text-secondary {
+  color: hsl(var(--landing-muted-foreground));
+}
+
+.landing-page-text-accent {
+  color: hsl(var(--landing-accent));
+}
+
+.landing-nav {
+  background-color: hsl(var(--landing-background));
+  border-bottom: 1px solid hsl(var(--landing-card-border));
+}
+
+.landing-hero {
+  background: linear-gradient(to bottom, hsl(var(--landing-background)), hsl(var(--landing-background)) 90%);
+}
+
+.why-choose-us-section {
+  background-color: hsl(var(--landing-card-bg));
+  border: 1px solid hsl(var(--landing-card-border));
+}
+
+.landing-page-footer {
+  background-color: hsl(var(--landing-background));
+  color: hsl(var(--landing-foreground));
+  border-top: 1px solid hsl(var(--landing-card-border));
+}
+
+/* Feature icon colors based on theme */
+.feature-icon {
+  color: hsl(var(--landing-icon-color));
+}
+
+.feature-title {
+  color: hsl(var(--landing-foreground));
+}
+
+.feature-description {
+  color: hsl(var(--landing-muted-foreground));
+}
+
+.blue-text {
+  color: hsl(var(--landing-primary));
+}
+
+.blue-bg {
+  background-color: hsl(var(--landing-primary));
+}
+
+.white-text {
+  color: hsl(var(--landing-primary-foreground));
+}
+
+/* Fix for theme button alignment */
+.theme-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Auth page styles */
+.auth-page {
+  background-image: radial-gradient(
+    circle at center,
+    hsl(var(--background)) 0%,
+    color-mix(in hsl, hsl(var(--background)), hsl(var(--primary)) 15%) 100%
+  );
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card {
+  background-color: hsl(var(--auth-card-bg));
+  border: 1px solid hsl(var(--auth-card-border));
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Auth input fields and OAuth buttons styling */
+.auth-input {
+  background-color: hsl(var(--auth-input-bg));
+  border: 1px solid hsl(var(--auth-input-border));
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-input:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px rgba(var(--primary), 0.25);
+}
+
+.auth-oauth-button {
+  background-color: hsl(var(--auth-oauth-bg));
+  border: 1px solid hsl(var(--auth-oauth-border));
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-oauth-button:hover:not(:disabled) {
+  background-color: hsl(var(--auth-oauth-bg-hover));
+  border-color: hsl(var(--auth-oauth-border-hover));
+}
+
+/* Analytics chart card styling */
+.analytics-chart-card {
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme-specific analytics chart card styles */
+.dark .analytics-chart-card {
+  background-color: hsl(var(--secondary));
+  border-color: hsl(var(--border));
+}
+
+.dracula .analytics-chart-card {
+  background-color: hsl(231 15% 21%);
+  border-color: hsl(var(--border));
+}
+
+.nord .analytics-chart-card {
+  background-color: hsl(220 26% 22%);
+  border-color: hsl(var(--border));
+}
+
+.monokai .analytics-chart-card {
+  background-color: hsl(60 6% 18%);
+  border-color: hsl(var(--border));
+}
+
+/* Project table background styling */
+.project-table-bg {
+  background-color: hsl(var(--table-background));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+}
+
+/* Tasks table specific styling */
+.tasks-table {
+  background-color: hsl(var(--background));
+  border-radius: var(--radius);
+}
+
+.project-table-bg .tasks-table {
+  background-color: hsl(var(--background));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tasks-table tbody tr {
+  border-bottom: 1px solid hsl(var(--border));
+  transition: background-color 0.2s ease;
+}
+
+.tasks-table tbody tr:hover {
+  background-color: hsl(var(--primary) / 0.05);
+}
+
+.tasks-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* Table row styling for project view */
+.project-table-row {
+  background-color: hsl(var(--card));
+}
+
+/* Workspace specific styling */
+.workspace-container {
+  background-color: hsl(var(--workspace-bg));
+  padding: 1.5rem;
+  border-radius: var(--radius);
+}
+
+.workspace-section {
+  background-color: hsl(var(--workspace-section-bg));
+  border-radius: var(--radius);
+  box-shadow: hsl(var(--workspace-card-shadow));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.workspace-section:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.workspace-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.workspace-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: hsl(var(--workspace-header-color));
+}
+
+.workspace-card {
+  background-color: hsl(var(--workspace-card-bg));
+  border: 1px solid hsl(var(--workspace-card-border));
+  border-radius: var(--radius);
+  box-shadow: hsl(var(--workspace-card-shadow));
+  transition: all 0.2s ease-in-out;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+/* Task card styling */
+.workspace-task-card {
+  border-left: 3px solid transparent;
+}
+
+.workspace-task-card:hover {
+  background-color: hsl(var(--workspace-task-hover));
+  border-color: hsl(var(--workspace-task-hover-border));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.workspace-task-title {
+  font-weight: 600;
+  color: hsl(var(--workspace-title-color));
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workspace-task-info {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: hsl(var(--workspace-text-color));
+}
+
+/* Project card styling */
+.workspace-project-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-left: 3px solid transparent;
+}
+
+.workspace-project-card:hover {
+  background-color: hsl(var(--workspace-project-hover));
+  border-color: hsl(var(--workspace-project-hover-border));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.workspace-project-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.workspace-project-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.workspace-project-title {
+  font-weight: 600;
+  color: hsl(var(--workspace-title-color));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workspace-project-tech {
+  font-size: 0.875rem;
+  color: hsl(var(--workspace-text-color));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Member card styling */
+.workspace-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  border-left: 3px solid transparent;
+}
+
+.workspace-member-card:hover {
+  background-color: hsl(var(--workspace-member-hover));
+  border-color: hsl(var(--workspace-member-hover-border));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.workspace-member-avatar {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-bottom: 0.75rem;
+  object-fit: cover;
+  border: 2px solid hsl(var(--workspace-card-border));
+}
+
+.workspace-member-name {
+  font-weight: 600;
+  color: hsl(var(--workspace-title-color));
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workspace-member-email {
+  font-size: 0.875rem;
+  color: hsl(var(--workspace-text-color));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Analytics card in workspace */
+.workspace-analytics-card {
+  background-color: hsl(var(--workspace-card-bg));
+  border: 1px solid hsl(var(--workspace-card-border));
+  border-radius: var(--radius);
+  box-shadow: hsl(var(--workspace-card-shadow));
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.workspace-analytics-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.workspace-analytics-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: hsl(var(--workspace-header-color));
+  margin-bottom: 1rem;
+}
+
+.workspace-analytics-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: hsl(var(--primary));
+  margin-bottom: 0.5rem;
+}
+
+.workspace-analytics-description {
+  font-size: 0.875rem;
+  color: hsl(var(--workspace-text-color));
+}
+
+/* Grid layout improvements for workspace */
+.workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .workspace-grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+/* Animation utilities for workspace */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-in-out;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Task status indicators */
+.task-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Teams page custom styling */
+.team-project-card {
+  background-color: hsl(var(--primary) / 0.1) !important;
+  border: 1px solid hsl(var(--primary) / 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.team-project-card:hover {
+  background-color: hsl(var(--primary) / 0.15) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.team-tips-card {
+  background-color: hsl(var(--chart-2) / 0.1) !important;
+  border: 1px solid hsl(var(--chart-2) / 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.team-tips-card:hover {
+  background-color: hsl(var(--chart-2) / 0.15) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Empty state styling for workspace sections */
+.workspace-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: hsl(var(--workspace-text-color));
+  background-color: hsl(var(--workspace-section-bg) / 0.5);
+  border: 1px dashed hsl(var(--workspace-card-border));
+  border-radius: var(--radius);
+}
+
+.workspace-empty-state-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: hsl(var(--workspace-text-color) / 0.5);
+}
+
+.workspace-empty-state-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Button variants specific to workspace */
+.workspace-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius);
+  transition: all 0.2s ease;
+}
+
+.workspace-button-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.workspace-button-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+  transform: translateY(-1px);
+}
+
+.workspace-button-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.workspace-button-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.9);
+  transform: translateY(-1px);
+}
+
+.workspace-button-outline {
+  color: hsl(var(--primary));
+}
+
+.workspace-button-outline:hover {
+  background-color: hsl(var(--secondary));
+  transform: translateY(-1px);
+}

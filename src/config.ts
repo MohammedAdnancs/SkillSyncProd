@@ -1,0 +1,11 @@
+export const DATABASE_ID = process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID!;
+export const WORKSPACES_ID = process.env.NEXT_PUBLIC_APPWRITE_WORKSPACES_ID!;
+export const IMAGES_BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID!;
+export const MEMBERS_ID = process.env.NEXT_PUBLIC_APPWRITE_MEMBERS_ID!;
+export const PROJECTS_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECTS_ID!;
+export const TASKS_ID = process.env.NEXT_PUBLIC_APPWRITE_TASKS_ID!;
+export const USERSTORIES_ID = process.env.NEXT_PUBLIC_APPWRITE_USERSTORIES_ID!;
+export const TEAMS_ID = process.env.NEXT_PUBLIC_APPWRITE_TEAMS_ID!;
+export const SKILLS_ID = process.env.NEXT_PUBLIC_APPWRITE_Skill_ID!;
+export const TASKS_DEPENDENCIES_ID = process.env.NEXT_PUBLIC_APPWRITE_TASK_DEPENDINCES!;
+export const Roles_ID = process.env.NEXT_PUBLIC_APPWRITE_ROLES_ID!;
