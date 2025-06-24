@@ -19,14 +19,20 @@ export const useUpdateStory = () => {
             console.log("User Story Updated!", response);
             const result = await response.json();
             return result;
-        },
-        onSuccess: (result) => {
+        },        onSuccess: (result) => {
             toast.success("User Story Updated!");
             console.log("User Story Updated!", result);
+            
+            // Invalidate the list of user stories to refresh any listing views
             queryClient.invalidateQueries({queryKey: ["userStories"]});
-            const storyId = result.data?.$id || result.$id;
+            
+            // Get the story ID - the API returns the document directly
+            const storyId = result.$id;
+            console.log("Invalidating userStory query for ID:", storyId);
+            
             if (storyId) {
-                queryClient.invalidateQueries({queryKey: ["userStory", storyId]});
+                // Invalidate the specific user story to refresh the detail view
+                queryClient.invalidateQueries({queryKey: ["story", storyId]});
             }
         },
         onError: (e) => {
